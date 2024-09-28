@@ -1,0 +1,27 @@
+# Exclude test files
+tests/
+
+# Exclude configuration files
+tsconfig.json
+jest.config.js
+
+# Exclude GitHub workflows
+.github/
+
+# Exclude local environment files
+.env
+
+# Exclude logs
+logs
+*.log
+
+# Exclude TypeScript build info
+*.tsbuildinfo
+
+# Exclude IDE/editor settings
+.vscode/
+.idea/
+.DS_Store
+
+# Exclude source files (only include dist/)
+src/
