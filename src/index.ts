@@ -11,6 +11,9 @@ export function build<T>(obj: Partial<T>): T {
         if (prop === unwrapSymbol) {
           return self
         }
+        if (prop === 'toJSON') {
+          return () => self ?? null
+        }
         return builder(self?.[prop], ref, self, prop, (val: any) => {
           // Self-discovery from 2 levels deep
           if (parentBuilder === undefined) {
