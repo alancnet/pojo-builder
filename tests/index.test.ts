@@ -4,6 +4,7 @@ type Test = {
   some_field: string;
   some_object: {
     some_field: string;
+    some_array: string[];
   };
   some_array: string[];
 };
@@ -36,5 +37,12 @@ describe('pojo-builder', () => {
     expect(isBuilder(builder)).toBe(true);
     const plainObject = { name: 'Alice' };
     expect(isBuilder(plainObject)).toBe(false);
+  });
+
+  it('should be able to push to a deep array that does not exist', () => {
+    const builder = build<Test>({});
+    builder.some_object.some_array.push('some_value');
+    const result = unwrap(builder);
+    expect(result).toEqual({ some_object: { some_array: ['some_value'] } });
   });
 });

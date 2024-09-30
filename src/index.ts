@@ -13,7 +13,7 @@ export function build<T>(obj: Partial<T>): T {
         }
         return builder(self?.[prop], ref, self, prop, (val: any) => {
           // Self-discovery from 2 levels deep
-          if (parentSelf === undefined) {
+          if (parentBuilder === undefined) {
             throw new Error(`Cannot call ${String(prop)} on an unknown type`)
           }
           self = val
