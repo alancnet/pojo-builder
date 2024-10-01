@@ -86,4 +86,13 @@ describe('pojo-builder', () => {
     const result = unwrap(builder);
     expect(result).toEqual({ some_object: {} });
   });
+
+  it('should be able to set nested builders', () => {
+    const builder = build<Test>({});
+    const nestedBuilder = build<Test['some_object']>({});
+    nestedBuilder.some_field = 'some_value';
+    builder.some_object = nestedBuilder;
+    const result = unwrap(builder);
+    expect(result).toEqual({ some_object: { some_field: 'some_value' } });
+  });
 });

@@ -24,6 +24,10 @@ export function build<T>(obj: Partial<T>): T {
         })
       },
       set(_, prop, value) {
+        if (typeof value === 'object' && value !== null) {
+          // Unwrap the value if it's a builder
+          value = value[unwrapSymbol] ?? value
+        }
         if (self === undefined) {
           if (typeof prop === 'string' && /^\d+$/.test(prop)) {
             // We're an array
